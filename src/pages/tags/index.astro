@@ -8,7 +8,7 @@ type BlogPost = CollectionEntry<'blog'>;
 interface Tag {
 	value: string;
 	label: string;
-	postCount: number;
+	itemCount: number;
 }
 
 function groupTagsByFirstLetter(tags: Tag[]) {
@@ -30,21 +30,30 @@ function groupTagsByFirstLetter(tags: Tag[]) {
 }
 
 const allPosts: BlogPost[] = await getCollection('blog');
+const allProjects = await getCollection('projects');
 const mappedTags: { [key: string]: Tag } = {};
+
+const processTags = (tags: string[]) => {
+  for (const tag of tags || []) {
+    const tagValue = slugify(tag);
+    if (mappedTags[tagValue]) {
+      mappedTags[tagValue].itemCount += 1;
+    } else {
+      const _tag: Tag = {
+        value: tagValue,
+        label: tag,
+        itemCount: 1
+      };
+      mappedTags[tagValue] = _tag;
+    }
+  }
+};
+
 for (const post of allPosts) {
-	for (const tag of post.data?.tags || []) {
-		const tagValue = slugify(tag);
-		if (mappedTags[tagValue]) {
-			mappedTags[tagValue].postCount += 1;
-		} else {
-			const _tag: Tag = {
-				value: tagValue,
-				label: tag,
-				postCount: 1
-			};
-			mappedTags[tagValue] = _tag;
-		}
-	}
+  processTags(post.data?.tags || []);
+}
+for (const project of allProjects) {
+  processTags(project.data?.tags || []);
 }
 const groupedTags  = groupTagsByFirstLetter(Object.values(mappedTags))
 const title = `All Tags`;
@@ -70,7 +79,7 @@ const description = 'Post tags: concise keywords categorizing content for easy n
                     transition-all duration-700
                   hover:border-zinc-700 dark:hover:border-zinc-300'
                   href={`/tags/${slugify(tag.value)}/`}>
-                  {tag.label} ({tag.postCount})
+                  {tag.label} ({tag.itemCount})
                 </a>
               ))
             }

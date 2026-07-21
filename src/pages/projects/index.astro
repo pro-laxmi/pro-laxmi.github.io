@@ -1,8 +1,18 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import ProjectList from '../../components/ProjectList.astro';
-import { projects } from './projects';
+import { getCollection } from 'astro:content';
 
+const projectsCollection = await getCollection('projects');
+const mappedProjects = projectsCollection.sort((a, b) => (b.data.date?.valueOf() || 0) - (a.data.date?.valueOf() || 0)).map(p => ({
+  name: p.data.title,
+  description: p.data.summary || '',
+  demoLink: p.data.links?.[0]?.url || '',
+  html_url: p.data.github || '',
+  tags: p.data.tags || [],
+  postLink: `/projects/${p.id}/`,
+  date: p.data.date
+}));
 ---
 
 <BaseLayout
@@ -10,10 +20,11 @@ import { projects } from './projects';
 	description="All my project portfolio from real projects to open source projects."
 >
   <div class='container'>
-    <div class="mb-10">
+    <div class="mb-10 text-center">
       <h1 class="text-3xl font-bold mb-2">All My Projects</h1>
       <p class="text-zinc-700 dark:text-zinc-300 text-lg">All my project portfolio from real projects to open source projects.</p>
     </div>
-    <ProjectList projects={projects}/>
+    
+    <ProjectList projects={mappedProjects} showSort={true}/>
   </div>
 </BaseLayout>

@@ -1,0 +1,89 @@
+---
+title: "ChiralDB: Automatic JSON-to-Relational Database Engine"
+slug: "chiral-db"
+date: 2026-04-25
+draft: false
+tags: ['PostgreSQL', 'FastAPI', 'React', 'TypeScript', 'Vite', 'Databases']
+summary: "Architected a hybrid database engine utilizing Shannon Entropy to autonomously infer schemas from raw JSON, achieving 5.9ms query latency."
+github: "https://github.com/devansh-lodha/chiral-db"
+links:
+  - name: Live Demo
+    url: https://devansh-lodha.github.io/chiral-db/
+---
+
+import DynamicSVG from '../../components/DynamicSVG.astro';
+
+# **TL;DR:**
+- An autonomous, session-scoped database framework that transparently bridges the gap between Relational (SQL) and Document (JSONB) paradigms over a single PostgreSQL instance. 
+- By utilizing Shannon Entropy to infer data types, it completely abstracts storage placement, schema evolution, and SQL JOINs away from the developer.
+
+## Tech Stack
+
+| Category | Technologies |
+| --- | --- |
+| **Backend Engine** | Python 3.11, FastAPI, SQLAlchemy 2.0, asyncpg |
+| **Database** | PostgreSQL 17 |
+| **Frontend Inspector** | React 18, TypeScript, Vite, TailwindCSS |
+| **DevOps & Tooling** | UV, Justfile, Docker, Docker Compose |
+
+
+---
+
+# The Problem
+
+* **Schema Rigidity:** SQL requires strict schemas, causing application errors or migration downtime when data shapes evolve.
+* **Document Joins Overhead:** NoSQL stores data as flat documents, leading to storage redundancies and expensive client-side joins for nested lists.
+* **DDL Locks Downtime:** Altering column datatypes in production blocks database operations, leading to request timeouts.
+
+---
+
+# Core Features
+
+* **Zero Schema Definition:** Ingest raw JSON. ChiralDB infers types and autonomously splits repeating arrays into normalized SQL tables.
+* **Hybrid Storage Engine:** Stable scalars map to optimized SQL columns; sparse or drifting fields gracefully overflow into a fallback `JSONB` container.
+* **Lock-Free Type-Drift Migration:** Detects runtime type changes (e.g., integer to string) and moves conflicted fields to JSONB without locking production tables.
+* **Dot-Notation Query Translation:** Parses dot-notated queries (e.g., `comments.text`) directly into parameterized SQL `SELECT` and `JOIN` commands.
+* **ACID Transactions & Monotonic Clocks:** Utilizes PostgreSQL's `begin_nested()` and append-microsecond offsets to ensure distinct bi-temporal ordering and perfect Atomicity without 2PC overhead.
+* **Entity Inspector:** Ships with a React SPA to visualize logical schemas, map active databases, and execute CRUD operations.
+
+---
+
+# High-Level Architecture
+<DynamicSVG src="chiral-db.svg" />
+
+*Architecture flow demonstrating how raw JSON is ingested, statistically analyzed for type inference, and dynamically routed between normalized SQL tables and JSONB fallback storage.*
+
+---
+# The Technical Deep Dive
+Bridging two fundamentally different database paradigms without sacrificing performance required several custom backend engines and concurrency solutions.
+
+* **Autonomous Schema & Lock-Free Migrations:** We developed statistical array decomposition heuristics (evaluating occurrence ratios, data homogeneity, and average cardinality) to automatically detect and split repeating nested arrays into normalized SQL tables. To prevent production downtime, We coded an asynchronous column-drift migration pipeline utilizing nested database checkpoints (`begin_nested()`). It detects runtime type changes (e.g., an integer mutating into a string) and safely moves conflicted fields to a JSONB fallback without locking production tables or rolling back concurrent transactions.
+* **Dot-Notation Query Translation:** To make querying seamless, We built a Python query translation engine. It parses nested JSON dot-notation queries (e.g., `comments.text`) and translates them on-the-fly into parameterized SQL `SELECT` and `JOIN` commands, effectively hiding the complex relational architecture from the end-user.
+* **Bi-temporal Ordering & ACID Transactions:** Handling concurrent data drift requires perfect atomicity. We programmed a thread-safe monotonic clock using lock-offsets and PostgreSQL's transaction management to securely resolve bi-temporal conflicts and assign unique `sys_ingested_at` timestamps without the heavy overhead of Two-Phase Commit (2PC).
+* **Visual Entity Inspector:** To make the underlying magic visible, We created a complete React/TypeScript Single Page Application (SPA) dashboard using Vite and `@xyflow/react` to visualize logical schemas, map active database relationships, and execute CRUD operations directly against the engine.
+
+---
+
+# Results & Metrics
+* **Latency:** Maintained consistently low overhead for on-the-fly query translation, ensuring minimal delays before core SQL execution.
+* **Efficiency:** The hybrid architecture paid off in throughput—coordinated multi-entity updates via the logical query engine executed efficiently by avoiding traditional sequential client-side joins and leveraging direct SQL translations.
+
+---
+
+# Results & Learnings
+* **Performance:** Maintained average query translation overhead under 1-2ms, with core execution latency clocking at just 5.9ms.
+* **Efficiency:** Coordinated multi-entity updates executed 38.8% faster than traditional sequential query operations.
+* **Core Learnings:** Mastered dynamic schema evolution over SQL, optimized PostgreSQL GIN index pathways, enforced multi-tenant logical isolation, and secured DDL operations against injection threats via regex validators.
+
+---
+
+# Future Work
+* Support partial GIN indexes over frequently accessed fields within the JSONB fallback column.
+* Implement vector-based similarity search indexes for document search validation.
+* Introduce database sharding routing based on active session identifiers.
+
+---
+
+# Links
+* **GitHub Repository:** <a href="https://github.com/devansh-lodha/chiral-db" target="_blank">link</a>
+* **Live Demo / Docs:** <a href="https://devansh-lodha.github.io/chiral-db/" target="_blank">link</a>

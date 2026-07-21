@@ -1,6 +1,7 @@
 ---
 import { Image } from 'astro:assets';
-import Ava from '@src/assets/img/ava.jpg';
+import Ava from '@src/assets/img/me.jpeg';
+import { AUTHOR_NAME, AUTHOR_TITLE, SOCIAL_LINKS } from '../consts';
 
 type PicSize = 'sm' | 'md' | 'lg';
 interface Props {
@@ -11,7 +12,7 @@ const { picSize } = Astro.props;
 
 <div class='flex gap-4 items-center leading-tight not-prose'>
 	<a
-		href='https://github.com/syakirurahman'
+		href={SOCIAL_LINKS.github}
 		target='_blank'
 		rel='noopener noreferrer'
 		class:list={[
@@ -21,19 +22,19 @@ const { picSize } = Astro.props;
 			{ 'w-[90px] h-[90px]': picSize === 'lg' }
 		]}
 	>
-		<Image src={Ava} alt='Muhammad Syakirurohman' />
+		<Image src={Ava} alt={AUTHOR_NAME} />
 	</a>
 	<div>
 		<div>
 			<a
-				href='https://github.com/syakirurahman'
+				href={SOCIAL_LINKS.github}
 				class='block font-bold text-inherit hover:text-[var(--link-color)]'
 				target='_blank'
 				rel='noopener noreferrer'
 			>
-				Muhammad Syakirurohman
+				{AUTHOR_NAME}
 			</a>
 		</div>
-		<small class='avatar__subtitle'>Frontend Engineer</small>
+		<small class='avatar__subtitle' set:html={AUTHOR_TITLE}></small>
 	</div>
 </div>

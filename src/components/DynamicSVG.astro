@@ -1,0 +1,15 @@
+---
+import fs from 'fs';
+import path from 'path';
+
+const { src, class: className } = Astro.props;
+const filePath = path.join(process.cwd(), 'src/assets/svgs', src);
+let svgContent = '';
+
+try {
+  svgContent = fs.readFileSync(filePath, 'utf-8');
+} catch (e) {
+  console.error(`SVG not found at: ${filePath}`);
+}
+---
+<div class={`inline-svg-container ${className || ''}`} set:html={svgContent} />

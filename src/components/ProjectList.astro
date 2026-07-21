@@ -1,21 +1,45 @@
 ---
 import { Image } from 'astro:assets';
-import type { Project } from '../pages/projects/projects'
 import { kFormatter } from '../utils'
+
+export interface Project {
+  name: string;
+  demoLink?: string;
+  tags?: string[];
+  description?: string;
+  postLink?: string;
+  demoLinkRel?: string;
+  html_url?: string;
+  stargazers_count?: number;
+  date?: Date;
+  [key: string]: any;
+}
 import GithubWhite from '@src/assets/img/github-mark-white.svg';
 import GithubBlack from '@src/assets/img/github-mark.svg';
+import FormattedDate from './FormattedDate.astro';
 
-const { projects } = Astro.props
+const { projects, showSort = false } = Astro.props
 
 ---
-<div class="grid grid-cols-12 gap-5">
+{showSort && (
+  <div class="flex justify-end mb-4">
+    <select id="project-sort" class="bg-zinc-800 text-sm border border-zinc-700 rounded-lg px-3 py-1.5 focus:outline-none focus:border-cyan-400 text-zinc-300">
+      <option value="desc">Newest first</option>
+      <option value="asc">Oldest first</option>
+    </select>
+  </div>
+)}
+<div class="grid grid-cols-12 gap-5" id="project-grid">
   {
     projects.map((project: Project) => 
-      <div class="col-span-12 sm:col-span-6 lg:col-span-4 border dark:border-zinc-700 rounded-xl shadow-sm p-5">
+      <div class="project-card col-span-12 sm:col-span-6 lg:col-span-4 border dark:border-zinc-700 rounded-xl shadow-sm p-5 flex flex-col min-h-[300px]" 
+        data-tags={JSON.stringify((project.tags || []).map((t: string) => t.toLowerCase()))}
+        data-date={project.date?.valueOf() || 0}
+      >
         <div class="flex justify-between items-center">
-          <div class='flex gap-2'>
+          <div class='flex flex-wrap gap-2'>
             {
-              (project.tags || [] )?.map((tag: string) => (
+              (project.tags || [] ).slice(0, 3).map((tag: string) => (
                 <span
                   class='border border-zinc-300 dark:border-zinc-700 rounded-2xl
                     text-sm text-zinc-700 dark:text-zinc-300 no-underline px-2 py-0.5
@@ -25,6 +49,16 @@ const { projects } = Astro.props
                   {tag}
                 </span>
               ))
+            }
+            {
+              (project.tags || []).length > 3 && (
+                <span
+                  class='border border-zinc-300 dark:border-zinc-700 rounded-2xl
+                    text-sm text-zinc-500 dark:text-zinc-400 no-underline px-2 py-0.5'
+                  >
+                  +{(project.tags || []).length - 3}
+                </span>
+              )
             }
           </div>
 
@@ -46,28 +80,52 @@ const { projects } = Astro.props
             </div>
           )}
         </div>
-        <h3 class="font-semibold my-2">
-          <a class="underline" href={project.demoLink} target="_blank" rel={project.demoLinkRel}>{project.name}</a>
+        <h3 class="font-semibold my-2 text-lg">
+          <a class="underline hover:text-cyan-400 transition-colors" href={project.html_url} target="_blank" rel="noopener noreferrer">{project.name}</a>
         </h3>
-        <div class="line-clamp-2 text-zinc-600 dark:text-zinc-300 mb-4 min-h-[50px]">
+        <div class="line-clamp-3 text-zinc-600 dark:text-zinc-300 mb-4 grow">
           <p>{project.description}</p>
         </div>
-        <div class="flex justify-end gap-3">
-          {
-            project.postLink &&
-            <a class="underline flex items-center gap-2" href={project.postLink}>
-              Article
-            </a>
-          }
-          {
-            project.demoLink &&  // This line adds the conditional check for the Demo link
-            <a class="underline flex items-center gap-2" href={project.demoLink} target="_blank" rel={project.demoLinkRel}>
-              Demo 
-              <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-external-link"><path d="M15 3h6v6"/><path d="M10 14 21 3"/><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/></svg>
-            </a>
-          }
+        <div class="flex justify-between items-center mt-auto pt-4">
+          <div class="text-xs text-zinc-500 font-mono">
+            {project.date && <FormattedDate date={project.date} />}
+          </div>
+          <div class="flex gap-3">
+            {
+              project.postLink &&
+              <a class="underline flex items-center gap-2" href={project.postLink}>
+                Article
+              </a>
+            }
+            {
+              project.demoLink && 
+              <a class="underline flex items-center gap-2" href={project.demoLink} target="_blank" rel={project.demoLinkRel}>
+                Demo 
+                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-external-link"><path d="M15 3h6v6"/><path d="M10 14 21 3"/><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/></svg>
+              </a>
+            }
         </div>
+      </div>
       </div>
     )
   }
 </div>
+
+<script is:inline>
+  document.addEventListener('DOMContentLoaded', () => {
+    const sortSelect = document.getElementById('project-sort');
+    const grid = document.getElementById('project-grid');
+    if (sortSelect && grid) {
+      sortSelect.addEventListener('change', (e) => {
+        const order = e.target.value;
+        const cards = Array.from(grid.querySelectorAll('.project-card'));
+        cards.sort((a, b) => {
+          const dateA = parseInt(a.getAttribute('data-date') || '0');
+          const dateB = parseInt(b.getAttribute('data-date') || '0');
+          return order === 'desc' ? dateB - dateA : dateA - dateB;
+        });
+        cards.forEach(card => grid.appendChild(card));
+      });
+    }
+  });
+</script>

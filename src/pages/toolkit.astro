@@ -1,0 +1,31 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { TOOLKIT } from '../consts';
+---
+
+<BaseLayout
+	title="My Toolkit"
+	description="A collection of software tools and other resources that I use in my daily life."
+>
+  <div class='container max-w-4xl'>
+    <div class="mb-12">
+      <h1 class="text-4xl font-bold mb-4">My Toolkit</h1>
+      <p class="text-zinc-400 font-mono">A collection of software tools and other resources that I use in my daily life.</p>
+    </div>
+    
+    <div class="space-y-12">
+      {TOOLKIT.map(section => (
+        <section>
+          <h2 class="text-2xl font-bold mb-6 text-zinc-100">{section.category}</h2>
+          <ul class="list-disc list-inside space-y-4 text-zinc-300">
+            {section.items.map(item => (
+              <li>
+                <strong class="text-cyan-400">{item.name}</strong> - {item.description}
+              </li>
+            ))}
+          </ul>
+        </section>
+      ))}
+    </div>
+  </div>
+</BaseLayout>

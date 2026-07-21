@@ -1,84 +1,164 @@
 ---
 import { Image } from 'astro:assets';
 import BaseLayout from '../layouts/BaseLayout.astro';
-import Ava from '@src/assets/img/ava.jpg';
+import Ava from '@src/assets/img/me.jpeg';
 import Prose from '../components/Prose.astro';
 
 ---
 
 <BaseLayout
 	title="About Me"
-	description="Lorem ipsum dolor sit amet"
+	description=""
 >
   <div class='container'>
 		<main class='prose text-lg dark:prose-invert'>
       <article>
         <div class='w-full md:flex md:items-center gap-16 mb-10'>
           <div class="text-pretty leading-9">
-            <h1 class="text-4xl font-bold mb-4">Hi There 👋, Syakir Here! </h1>
+            <h1 class="text-4xl font-bold mb-4">About Me</h1>
             <Prose>
               <div class="text-lg">
-                <p>I am a Front-end Engineer from Indonesia. I love sharing what i know on <a href="https://devaradise.com" target="_blank">devaradise.com</a>, and sometime i also share freebies like this. I'm also active on <a href="https://dev.to/syakirurahman" target="_blank">dev.to</a> and <a href="https://x.com/syakirurahman" target="_blank">twitter</a>.</p>
-                <p>I made Devolio to help you easily set up your own blog and portfolio website. It's a static site built with Astro and Tailwind CSS, and you can deploy it on platforms like <a href="https://app.netlify.com/start/deploy?repository=https://github.com/devaradise/devolio" target="_blank" rel="nofollow noopener">Netlify</a>, <a href="https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Fdevaradise%2Fdevolio" target="_blank" rel="nofollow noopener">Vercel</a>, or <a href="https://pages.cloudflare.com/" target="_blank" rel="nofollow noopener">Cloudflare Pages</a>.</p>  
+                <p>Hi, I'm Laxmidhar Panda. I am a Junior Undergraduate studying Computer Science and Engineering at the Indian Institute of Technology Gandhinagar.</p>
+                <p>I am deeply interested in artificial intelligence, scalable database systems, and full-stack development. I have experience working with a diverse tech stack including PyTorch, React, PostgreSQL, and vector databases like Qdrant and FAISS.</p>  
               </div>
             </Prose>
           </div>
-          <Image src={Ava} alt="Muhammad Syakirurohman" width={300}  class="rounded-3xl rotate-3 mx-4 md:mx-0"/>
+          <Image src={Ava} alt="Laxmidhar Panda" width={300}  class="rounded-3xl rotate-3 mx-4 md:mx-0"/>
         </div>     
-        <div>
-          <p>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
-            labore et dolore magna aliqua. Vitae ultricies leo integer malesuada nunc vel risus commodo
-            viverra. Adipiscing enim eu turpis egestas pretium. Euismod elementum nisi quis eleifend quam
-            adipiscing. In hac habitasse platea dictumst vestibulum. Sagittis purus sit amet volutpat. Netus
-            et malesuada fames ac turpis egestas. Eget magna fermentum iaculis eu non diam phasellus
-            vestibulum lorem. Varius sit amet mattis vulputate enim. Habitasse platea dictumst quisque
-            sagittis. Integer quis auctor elit sed vulputate mi. Dictumst quisque sagittis purus sit amet.
-          </p>
+        <div class="flex flex-col md:flex-row gap-12 mt-12 mb-16 mx-auto">
+          <div class="flex-1">
+            <h2 class="text-2xl font-bold mb-8 text-cyan-600 dark:text-cyan-400">Experience</h2>
+            <div class="relative border-l border-zinc-300 dark:border-zinc-700 pl-8 space-y-8 md:ml-32">
+              <div class="relative">
+                <div class="absolute -left-[38px] top-1.5 w-3 h-3 bg-zinc-400 dark:bg-zinc-500 rounded-full border-4 border-white dark:border-[#111111]"></div>
+                <div class="absolute -left-32 top-1 text-xs font-mono text-zinc-600 dark:text-zinc-400 bg-zinc-100 dark:bg-zinc-800/30 border border-zinc-200 dark:border-zinc-700/50 px-2 py-1.5 rounded w-24 text-center hidden md:block">
+                  June 2026<br/>Presnt
+                </div>
+                <div class="md:hidden text-sm font-mono text-zinc-600 dark:text-zinc-400 mb-1">June 2026 - Present</div>
+                <h3 class="text-lg font-bold text-zinc-900 dark:text-zinc-100 mb-1">Scale ML club</h3>
+                <div class="flex flex-col gap-1">
+                  <p class="text-zinc-600 dark:text-zinc-400 text-sm mt-0 mb-0 leading-tight">Core member</p>
+                  <p class="text-zinc-600 dark:text-zinc-400 text-sm mt-0 mb-0 leading-tight">Self-taught in machine learning and data science</p>
+                </div>
+              </div>
+              <div class="relative">
+                <div class="absolute -left-[38px] top-1.5 w-3 h-3 bg-zinc-400 dark:bg-zinc-500 rounded-full border-4 border-white dark:border-[#111111]"></div>
+                <div class="absolute -left-32 top-1 text-xs font-mono text-zinc-600 dark:text-zinc-400 bg-zinc-100 dark:bg-zinc-800/30 border border-zinc-200 dark:border-zinc-700/50 px-2 py-1.5 rounded w-24 text-center hidden md:block">
+                  Apr 2025<br/>Apr 2026
+                </div>
+                <div class="md:hidden text-sm font-mono text-zinc-600 dark:text-zinc-400 mb-1">Apr 2025 - Apr 2026</div>
+                <h3 class="text-lg font-bold text-zinc-900 dark:text-zinc-100 mb-1">TEDxIITGandhinagar</h3>
+                <div class="flex flex-col gap-1">
+                  <p class="text-zinc-600 dark:text-zinc-400 text-sm mt-0 mb-0 leading-tight">Design and Tech Core</p>
+                  <p class="text-zinc-600 dark:text-zinc-400 text-sm mt-0 mb-0 leading-tight">Learnt Leadership, Communication, and Teamwork along with presenting TEDxIITGandhinagar's Design Identity.</p>
+                </div>
+              </div>
+              <div class="relative">
+                <div class="absolute -left-[38px] top-1.5 w-3 h-3 bg-zinc-400 dark:bg-zinc-500 rounded-full border-4 border-white dark:border-[#111111]"></div>
+                <div class="absolute -left-32 top-1 text-xs font-mono text-zinc-600 dark:text-zinc-400 bg-zinc-100 dark:bg-zinc-800/30 border border-zinc-200 dark:border-zinc-700/50 px-2 py-1.5 rounded w-24 text-center hidden md:block">
+                  Sep 2024<br/>Apr 2025
+                </div>
+                <div class="md:hidden text-sm font-mono text-zinc-600 dark:text-zinc-400 mb-1">Sep 2024 - Apr 2025</div>
+                <h3 class="text-lg font-bold text-zinc-900 dark:text-zinc-100 mb-1">TEDxIITGandhinagar</h3>
+                <div class="flex flex-col gap-1">
+                  <p class="text-zinc-600 dark:text-zinc-400 text-sm mt-0 mb-0 leading-tight">Junior Graphic Designer</p>
+                  <p class="text-zinc-600 dark:text-zinc-400 text-sm mt-0 mb-0 leading-tight">Created visual content for main Event and campaigns</p>
+                </div>
+              </div>
+              <div class="relative">
+                <div class="absolute -left-[38px] top-1.5 w-3 h-3 bg-zinc-400 dark:bg-zinc-500 rounded-full border-4 border-white dark:border-[#111111]"></div>
+                <div class="absolute -left-32 top-1 text-xs font-mono text-zinc-600 dark:text-zinc-400 bg-zinc-100 dark:bg-zinc-800/30 border border-zinc-200 dark:border-zinc-700/50 px-2 py-1.5 rounded w-24 text-center hidden md:block">
+                  Aug 2024<br/>Nov 2024
+                </div>
+                <div class="md:hidden text-sm font-mono text-zinc-600 dark:text-zinc-400 mb-1">Aug 2024 - Nov 2024</div>
+                <h3 class="text-lg font-bold text-zinc-900 dark:text-zinc-100 mb-1">Amalthea, IIT Gandhinagar</h3>
+                <div class="flex flex-col gap-1">
+                  <p class="text-zinc-600 dark:text-zinc-400 text-sm mt-0 mb-0 leading-tight">Junior Event Executive</p>
+                  <p class="text-zinc-600 dark:text-zinc-400 text-sm mt-0 mb-0 leading-tight">Organized and managed events for the annual technical festival of IIT Gandhinagar</p>
+                </div>  
+              </div>
+            </div>
+          </div>
 
-          <p>
-            Morbi tristique senectus et netus. Id semper risus in hendrerit gravida rutrum quisque non
-            tellus. Habitasse platea dictumst quisque sagittis purus sit amet. Tellus molestie nunc non
-            blandit massa. Cursus vitae congue mauris rhoncus. Accumsan tortor posuere ac ut. Fringilla urna
-            porttitor rhoncus dolor. Elit ullamcorper dignissim cras tincidunt lobortis. In cursus turpis
-            massa tincidunt dui ut ornare lectus. Integer feugiat scelerisque varius morbi enim nunc.
-            Bibendum neque egestas congue quisque egestas diam. Cras ornare arcu dui vivamus arcu felis
-            bibendum. Dignissim suspendisse in est ante in nibh mauris. Sed tempus urna et pharetra pharetra
-            massa massa ultricies mi.
-          </p>
-
-          <p>
-            Mollis nunc sed id semper risus in. Convallis a cras semper auctor neque. Diam sit amet nisl
-            suscipit. Lacus viverra vitae congue eu consequat ac felis donec. Egestas integer eget aliquet
-            nibh praesent tristique magna sit amet. Eget magna fermentum iaculis eu non diam. In vitae
-            turpis massa sed elementum. Tristique et egestas quis ipsum suspendisse ultrices. Eget lorem
-            dolor sed viverra ipsum. Vel turpis nunc eget lorem dolor sed viverra. Posuere ac ut consequat
-            semper viverra nam. Laoreet suspendisse interdum consectetur libero id faucibus. Diam phasellus
-            vestibulum lorem sed risus ultricies tristique. Rhoncus dolor purus non enim praesent elementum
-            facilisis. Ultrices tincidunt arcu non sodales neque. Tempus egestas sed sed risus pretium quam
-            vulputate. Viverra suspendisse potenti nullam ac tortor vitae purus faucibus ornare. Fringilla
-            urna porttitor rhoncus dolor purus non. Amet dictum sit amet justo donec enim.
-          </p>
-
-          <p>
-            Mattis ullamcorper velit sed ullamcorper morbi tincidunt. Tortor posuere ac ut consequat semper
-            viverra. Tellus mauris a diam maecenas sed enim ut sem viverra. Venenatis urna cursus eget nunc
-            scelerisque viverra mauris in. Arcu ac tortor dignissim convallis aenean et tortor at. Curabitur
-            gravida arcu ac tortor dignissim convallis aenean et tortor. Egestas tellus rutrum tellus
-            pellentesque eu. Fusce ut placerat orci nulla pellentesque dignissim enim sit amet. Ut enim
-            blandit volutpat maecenas volutpat blandit aliquam etiam. Id donec ultrices tincidunt arcu. Id
-            cursus metus aliquam eleifend mi.
-          </p>
-
-          <p>
-            Tempus quam pellentesque nec nam aliquam sem. Risus at ultrices mi tempus imperdiet. Id porta
-            nibh venenatis cras sed felis eget velit. Ipsum a arcu cursus vitae. Facilisis magna etiam
-            tempor orci eu lobortis elementum. Tincidunt dui ut ornare lectus sit. Quisque non tellus orci
-            ac. Blandit libero volutpat sed cras. Nec tincidunt praesent semper feugiat nibh sed pulvinar
-            proin gravida. Egestas integer eget aliquet nibh praesent tristique magna.
-          </p>
+          <div class="flex-1">
+            <h2 class="text-2xl font-bold mb-8 text-cyan-600 dark:text-cyan-400">Education</h2>
+            <div class="relative border-l border-zinc-300 dark:border-zinc-700 pl-8 space-y-8 md:ml-32">
+              <div class="relative">
+                <div class="absolute -left-[38px] top-1.5 w-3 h-3 bg-zinc-400 dark:bg-zinc-500 rounded-full border-4 border-white dark:border-[#111111]"></div>
+                <div class="absolute -left-32 top-1 text-xs font-mono text-zinc-600 dark:text-zinc-400 bg-zinc-100 dark:bg-zinc-800/30 border border-zinc-200 dark:border-zinc-700/50 px-2 py-1.5 rounded w-24 text-center hidden md:block">
+                  2024<br/>Present
+                </div>
+                <div class="md:hidden text-sm font-mono text-zinc-600 dark:text-zinc-400 mb-1">2024 - Present</div>
+                <h3 class="text-lg font-bold text-zinc-900 dark:text-zinc-100 mb-1">IIT Gandhinagar</h3>
+                <div class="flex flex-col gap-1">
+                  <p class="text-zinc-700 dark:text-zinc-200 text-sm font-medium mt-0 mb-0 leading-tight">Grade: 8.31/10</p>
+                  <p class="text-zinc-600 dark:text-zinc-400 text-sm mt-0 mb-0 leading-tight">B.Tech. in Computer Science & Engineering</p>
+                </div>
+              </div>
+              <div class="relative">
+                <div class="absolute -left-[38px] top-1.5 w-3 h-3 bg-zinc-400 dark:bg-zinc-500 rounded-full border-4 border-white dark:border-[#111111]"></div>
+                <div class="absolute -left-32 top-1 text-xs font-mono text-zinc-600 dark:text-zinc-400 bg-zinc-100 dark:bg-zinc-800/30 border border-zinc-200 dark:border-zinc-700/50 px-2 py-1.5 rounded w-24 text-center hidden md:block">
+                  2022<br/>2024
+                </div>
+                <div class="md:hidden text-sm font-mono text-zinc-600 dark:text-zinc-400 mb-1">2022 - 2024</div>
+                <h3 class="text-lg font-bold text-zinc-900 dark:text-zinc-100 mb-1">Avanti Fellows, JNV Barwani</h3>
+                <div class="flex flex-col gap-1">
+                  <p class="text-zinc-700 dark:text-zinc-200 text-sm font-medium mt-0 mb-0 leading-tight">Grade: 89.6%</p>
+                  <p class="text-zinc-600 dark:text-zinc-400 text-sm mt-0 mb-0 leading-tight">10th-12th Grade</p>
+                </div>
+              </div>
+              <div class="relative">
+                <div class="absolute -left-[38px] top-1.5 w-3 h-3 bg-zinc-400 dark:bg-zinc-500 rounded-full border-4 border-white dark:border-[#111111]"></div>
+                <div class="absolute -left-32 top-1 text-xs font-mono text-zinc-600 dark:text-zinc-400 bg-zinc-100 dark:bg-zinc-800/30 border border-zinc-200 dark:border-zinc-700/50 px-2 py-1.5 rounded w-24 text-center hidden md:block">
+                  2017<br/>2022
+                </div>
+                <div class="md:hidden text-sm font-mono text-zinc-600 dark:text-zinc-400 mb-1">2017 - 2022</div>
+                <h3 class="text-lg font-bold text-zinc-900 dark:text-zinc-100 mb-1">Jawahar Navodaya Vidyalaya, Khordha</h3>
+                <div class="flex flex-col gap-1">
+                  <p class="text-zinc-700 dark:text-zinc-200 text-sm font-medium mt-0 mb-0 leading-tight">Grade: 97.6%</p>
+                  <p class="text-zinc-600 dark:text-zinc-400 text-sm mt-0 mb-0 leading-tight">6th-10th Grade</p>
+                </div>
+              </div>
+              <div class="relative">
+                <div class="absolute -left-[38px] top-1.5 w-3 h-3 bg-zinc-400 dark:bg-zinc-500 rounded-full border-4 border-white dark:border-[#111111]"></div>
+                <div class="absolute -left-32 top-1 text-xs font-mono text-zinc-600 dark:text-zinc-400 bg-zinc-100 dark:bg-zinc-800/30 border border-zinc-200 dark:border-zinc-700/50 px-2 py-1.5 rounded w-24 text-center hidden md:block">
+                  2011<br/>2017
+                </div>
+                <div class="md:hidden text-sm font-mono text-zinc-600 dark:text-zinc-400 mb-1">2011 - 2017</div>
+                <h3 class="text-lg font-bold text-zinc-900 dark:text-zinc-100 mb-1">Saraswati Sishu Vidya Mandir, Bhubaneswar</h3>
+                <div class="flex flex-col gap-1">
+                  <p class="text-zinc-700 dark:text-zinc-200 text-sm font-medium mt-0 mb-0 leading-tight">Grade: 95.2%</p>
+                  <p class="text-zinc-600 dark:text-zinc-400 text-sm mt-0 mb-0 leading-tight">UKG-5th Grade</p>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
-        </article>
+
+        <div class="mb-16">
+          <h2 class="text-2xl font-bold mb-6 text-cyan-600 dark:text-cyan-400">Achievements</h2>
+          <ul class="list-disc list-inside space-y-3 text-zinc-800 dark:text-zinc-200">
+            <li>AIR 2076 in JEE Advanced 2024</li>
+            <li>AIR 1781 with 99.896%ile in JEE Mains 2024</li>
+            <li>AIR 120 National Entranse Screening Test (NEST) 2024</li>
+          </ul>
+        </div>
+        
+        <!-- Gallery Section -->
+        <div>
+          <h2 class="text-2xl font-bold mb-4 text-cyan-600 dark:text-cyan-400">Gallery</h2>
+          <p class="text-zinc-600 dark:text-zinc-400 mb-8">Photos from conferences I attended and places I visited.</p>
+          <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+            <!-- Item 1 -->
+            <div class="group relative overflow-hidden rounded-xl border border-zinc-300 dark:border-zinc-700 bg-zinc-100 dark:bg-zinc-800/30">
+              <img src="https://images.unsplash.com/photo-1593693397690-362cb9666fc2?auto=format&fit=crop&q=80&w=600&h=400" alt="Udaipur" class="w-full h-48 object-cover transition-transform duration-300 group-hover:scale-105" />
+              <div class="p-4">
+                <h3 class="font-bold text-zinc-900 dark:text-zinc-100">Udaipur</h3>
+                <p class="text-sm text-zinc-600 dark:text-zinc-400">City of Lakes</p>
+              </div>
+            </div>
+          </div>
+        </div>
       </article>
     </main>
   </div>

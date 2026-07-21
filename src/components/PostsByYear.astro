@@ -3,11 +3,13 @@ import type { CollectionEntry } from 'astro:content';
 import PostItem from './PostItem.astro';
 
 type BlogPost = CollectionEntry<'blog'>;
-const { posts } = Astro.props;
+const { posts, showSort = false } = Astro.props;
 
 function groupPostsByYear(posts: BlogPost[]) {
   const grouped = posts.reduce((acc, post) => {
-    const year = post.data.pubDate.getFullYear();
+    const postDate = post.data.pubDate || post.data.date;
+    if (!postDate) return acc;
+    const year = postDate.getFullYear();
     if (!acc[year]) {
       acc[year] = [];
     }
@@ -19,7 +21,11 @@ function groupPostsByYear(posts: BlogPost[]) {
     .sort(([a], [b]) => Number(b) - Number(a))
     .map(([year, posts]) => ({
       year: Number(year),
-      posts: posts.sort((a, b) => b.data.pubDate.getTime() - a.data.pubDate.getTime()),
+      posts: posts.sort((a, b) => {
+        const dateA = a.data.pubDate || a.data.date;
+        const dateB = b.data.pubDate || b.data.date;
+        return (dateB?.getTime() || 0) - (dateA?.getTime() || 0);
+      }),
     }));
 }
 
@@ -27,14 +33,56 @@ const groupedPosts = groupPostsByYear(posts);
 
 
 ---
-
+{showSort && (
+  <div class="flex justify-end mb-4">
+    <select id="post-sort" class="bg-zinc-800 text-sm border border-zinc-700 rounded-lg px-3 py-1.5 focus:outline-none focus:border-cyan-400 text-zinc-300">
+      <option value="desc">Newest first</option>
+      <option value="asc">Oldest first</option>
+    </select>
+  </div>
+)}
+<div id="posts-container">
 {groupedPosts.map(({ year, posts }) => (
-  <div class="mb-8">
+  <div class="mb-8 year-block" data-year={year}>
     <h2 class="text-2xl font-bold mb-4">{year}</h2>
-    <div>
+    <div class="year-posts">
       {posts.map((post: BlogPost) => (
         <PostItem post={post} />
       ))}
     </div>
   </div>
 ))}
+</div>
+
+<script is:inline>
+  document.addEventListener('DOMContentLoaded', () => {
+    const postSort = document.getElementById('post-sort');
+    const container = document.getElementById('posts-container');
+    if (postSort && container) {
+      postSort.addEventListener('change', (e) => {
+        const order = e.target.value;
+        const yearBlocks = Array.from(container.querySelectorAll('.year-block'));
+        
+        yearBlocks.sort((a, b) => {
+          const yearA = parseInt(a.getAttribute('data-year') || '0');
+          const yearB = parseInt(b.getAttribute('data-year') || '0');
+          return order === 'desc' ? yearB - yearA : yearA - yearB;
+        });
+        
+        yearBlocks.forEach(block => {
+          container.appendChild(block);
+          const postsContainer = block.querySelector('.year-posts');
+          if (postsContainer) {
+            const posts = Array.from(postsContainer.querySelectorAll('.post-card'));
+            posts.sort((a, b) => {
+              const dateA = parseInt(a.getAttribute('data-date') || '0');
+              const dateB = parseInt(b.getAttribute('data-date') || '0');
+              return order === 'desc' ? dateB - dateA : dateA - dateB;
+            });
+            posts.forEach(post => postsContainer.appendChild(post));
+          }
+        });
+      });
+    }
+  });
+</script>

@@ -6,18 +6,19 @@ import type { CollectionEntry } from 'astro:content';
 type BlogPost = CollectionEntry<'blog'>;
 const { post }: Record<string, any> | { post: BlogPost } = Astro.props
 ---
-<div class='flex flex-col sm:flex-row gap-2 sm:items-center  border-b py-2 mb-1 capitalize dark:border-b-zinc-700'>        
-  <div class='text-zinc-700 text-sm w-24 dark:text-zinc-300 shrink-0'>
-    <FormattedDate date={post.data.pubDate} />
-  </div>
-  <h3 class='font-medium grow'>
-    <a href={`/${post.id}/`}>
-      {post.data.title}
-    </a>
-  </h3>
-  <div class='flex gap-2 shrink-0'>
+<div class='post-card flex flex-col gap-2 border-b py-4 mb-2 capitalize dark:border-b-zinc-700' 
+  data-tags={JSON.stringify((post.data.tags || []).map((t: string) => t.toLowerCase()))}
+  data-date={post.data.pubDate?.valueOf() || post.data.date?.valueOf() || 0}
+>        
+  <div class="flex justify-between items-start w-full">
+    <h3 class='font-medium text-lg grow'>
+      <a href={`/posts/${post.id}/`} class="hover:text-cyan-400 transition-colors">
+        {post.data.title}
+      </a>
+    </h3>
+    <div class='flex flex-wrap gap-2 shrink-0'>
     {
-      (post.data.tags || [] )?.map((tag: string) => (
+      (post.data.tags || [] ).slice(0, 3).map((tag: string) => (
         <a
           class='border border-zinc-300 dark:border-zinc-700 rounded-2xl
           text-sm text-zinc-700 dark:text-zinc-300 no-underline px-2 py-0.5
@@ -28,5 +29,19 @@ const { post }: Record<string, any> | { post: BlogPost } = Astro.props
         </a>
       ))
     }
+    {
+      (post.data.tags || []).length > 3 && (
+        <span
+          class='border border-zinc-300 dark:border-zinc-700 rounded-2xl
+          text-sm text-zinc-500 dark:text-zinc-400 no-underline px-2 py-0.5'
+        >
+          +{(post.data.tags || []).length - 3}
+        </span>
+      )
+    }
+    </div>
+  </div>
+  <div class='text-zinc-500 text-xs font-mono mt-1'>
+    <FormattedDate date={post.data.pubDate || post.data.date} />
   </div>
 </div>

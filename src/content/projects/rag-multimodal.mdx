@@ -1,0 +1,62 @@
+---
+title: "Multimodal RAG System (Offline AI Assistant)"
+slug: "rag-multimodal"
+date: 2025-11-15
+draft: false
+tags: ['RAG', 'AI Assistant', 'Phi-3', 'Vector DB']
+summary: "Developed an offline multimodal RAG system supporting semantic search using ChromaDB and CLIP embeddings with fully offline inference."
+github: "https://github.com/rajmodi8905/RAG-Implementation/"
+
+---
+
+import DynamicSVG from '../../components/DynamicSVG.astro';
+
+# **TL;DR:** 
+- An offline AI assistant capable of multimodal search and inference. 
+- It extracts text from PDFs, transcribes audio, and supports natural language image search using ChromaDB and CLIP embeddings—all while maintaining 100% data privacy using a local LLM (Phi-3).
+
+## Tech Stack
+| Category | Technologies |
+| --- | --- |
+| **Language** | Python 3.11 |
+| **AI / ML** | CLIP (<a href="https://huggingface.co/openai/clip-vit-base-patch32" target="_blank">`vit-base-patch32`</a>), Whisper (<a href="https://huggingface.co/openai/whisper-base" target="_blank">`whisper-base`</a>), Phi-3 (<a href="https://huggingface.co/microsoft/phi-3-mini-128k-instruct" target="_blank">`phi-3-mini-128k-instruct`</a>), Ollama, HuggingFace (<a href="https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2" target="_blank">`all-MiniLM-L6-v2`</a>) |
+| **Frameworks** | LangChain, Streamlit |
+| **Vector DB** | ChromaDB (Text), CLIP (Images) |
+
+---
+
+# The Problem Statement
+With increasing concerns about data privacy and security, enterprises and institutions face a major bottleneck: how do you safely parse and search through proprietary data? 
+
+Most organizations have massive amounts of institutional knowledge locked away in local networks, scattered across PDFs, meeting recordings, and local image databases. 
+
+Cloud-based LLMs pose a massive security risk for this sensitive, air-gapped data. A fully offline Retrieval-Augmented Generation (RAG) system solves this by allowing users to retrieve and conditionally generate answers from their internal data chunks without a single byte ever leaving their private network.
+
+---
+
+# High-Level Architecture
+<DynamicSVG src="multimodal-rag.svg" />
+
+*The data flow mapping how raw PDFs, audio, and images are chunked, embedded via MiniLM and CLIP, and stored in ChromaDB for secure, offline retrieval by the Phi-3 model.*
+
+---
+
+# Technical Deep Dive
+Building a robust multimodal RAG system entirely offline required combining several different embedding and retrieval strategies to maintain speed without sacrificing privacy.
+
+* **Text Ingestion & Vector Persistence:** We scripted the text chunking pipeline to process documents and transcribed audio completely offline. By integrating <a href="https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2" target="_blank"><a href="https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2" target="_blank">`all-MiniLM-L6-v2`</a></a>, the system generates lightweight, efficient text embeddings that are persisted and retrieved natively within ChromaDB.
+* **Natural Language Image Search:** Beyond standard text generation, we designed the integration of CLIP embeddings to enable cross-modal retrieval. This allows users to search the local image database using natural language queries to instantly find visually relevant matches, seamlessly merging with the standard text RAG pipeline.
+* **Real-Time Streaming Interface:** All embedding, retrieval, and LLM answer generation runs locally. To ensure a fast, conversational user experience without the latency of cloud APIs, answers from the local LLM (Phi-3:mini-128k via Ollama) are streamed in real-time to the Streamlit UI.
+
+---
+
+# Lessons Learned & Future Scope
+Building this architecture from the ground up provided a massive deep dive into the first principles of RAG and multimodal retrieval systems. 
+
+* **Core Takeaways:** I gained hands-on experience with the internal mechanics of vector databases (specifically ChromaDB and FAISS HNSW) and learned exactly how CLIP embeddings map text and images into the exact same latent space for semantic search.
+* **Future Scope:** We plan to add features such as video transcription, video-based RAG, and integration with larger local LLMs to further enhance the system's capabilities.
+
+---
+
+# Links
+- **Github**: <a href="https://github.com/rajmodi8905/RAG-Implementation" target="_blank">link</a>

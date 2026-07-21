@@ -1,0 +1,31 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { NEWS } from '../consts';
+
+const news = NEWS;
+---
+
+<BaseLayout
+	title="All News"
+	description="All my latest updates and news."
+>
+  <div class='container max-w-3xl mx-auto'>
+    <div class="mb-12">
+      <h1 class="text-4xl font-bold mb-4">All News</h1>
+      <p class="text-zinc-400 font-mono">My latest updates and announcements.</p>
+    </div>
+    
+    <div class="relative border-l border-zinc-700 pl-8 space-y-10 md:ml-32">
+      {news.map(item => (
+        <div class="relative">
+          <div class="absolute -left-[38px] top-1.5 w-3 h-3 bg-zinc-500 rounded-full border-4 border-[#111111]"></div>
+          <div class="absolute -left-32 top-1 text-xs font-mono text-zinc-400 bg-zinc-800/30 border border-zinc-700/50 px-2 py-1.5 rounded w-24 text-center hidden md:block">
+            {item.date.split(', ')[0]},<br/>{item.date.split(', ')[1]}
+          </div>
+          <div class="md:hidden text-sm font-mono text-zinc-400 mb-1">{item.date}</div>
+          <p class="text-zinc-300 leading-relaxed text-sm md:text-base" set:html={item.content}></p>
+        </div>
+      ))}
+    </div>
+  </div>
+</BaseLayout>

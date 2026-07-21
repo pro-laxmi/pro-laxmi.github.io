@@ -12,12 +12,13 @@ const { title, description, image } = Astro.props;
 <html lang='en'>
 	<head>
 		<BaseHead title={title} description={description} image={image} />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.css">
 	</head>
-	<body
-		class="bg-white dark:bg-zinc-900 dark:text-zinc-100 pt-16 sm:pt-0"
-	>
+	<body class="bg-white dark:bg-[#111111] text-zinc-900 dark:text-zinc-100 pt-16 sm:pt-0 overflow-x-hidden">
+    <div class="fixed inset-0 z-[-1] bg-grid-pattern opacity-50 dark:opacity-100 pointer-events-none"></div>
+    <div class="fixed inset-0 z-[-2] pointer-events-none bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-zinc-100 via-white to-white dark:from-[#222222] dark:via-[#111111] dark:to-[#111111]"></div>
 		<Header/>
-		<div class='py-8 min-h-[calc(100vh-160px)]'>
+		<div class='py-8 min-h-[calc(100vh-250px)]'>
 			<slot />
 		</div>
 		<Footer />
@@ -37,5 +38,16 @@ const { title, description, image } = Astro.props;
         </script>
       </>
     }
+    <style is:global>
+      .bg-grid-pattern {
+        background-size: 60px 60px;
+        background-image: linear-gradient(to right, rgba(0, 0, 0, 0.05) 1px, transparent 1px),
+                          linear-gradient(to bottom, rgba(0, 0, 0, 0.05) 1px, transparent 1px);
+      }
+      .dark .bg-grid-pattern {
+        background-image: linear-gradient(to right, rgba(255, 255, 255, 0.04) 1px, transparent 1px),
+                          linear-gradient(to bottom, rgba(255, 255, 255, 0.04) 1px, transparent 1px);
+      }
+    </style>
 	</body>
 </html>

@@ -6,13 +6,30 @@ const blog = defineCollection({
   schema: ({ image }) => z.object({
 		title: z.string(),
     seoTitle: z.string().optional(),
-		description: z.string(),
+		description: z.string().optional(),
+    summary: z.string().optional(),
 		// Transform string to Date object
-		pubDate: z.coerce.date(),
+		pubDate: z.coerce.date().optional(),
+    date: z.coerce.date().optional(),
 		updatedDate: z.coerce.date().optional(),
     tags: z.array(z.string()).optional(),
 		coverImage: image().optional()
 	})
 });
 
-export const collections = { blog };
+const projects = defineCollection({
+  loader: glob({ pattern: "**/*.{md,mdx}", base: "./src/content/projects" }),
+  schema: ({ image }) => z.object({
+		title: z.string(),
+		summary: z.string().optional(),
+		date: z.coerce.date().optional(),
+    tags: z.array(z.string()).optional(),
+    github: z.string().optional(),
+    links: z.array(z.object({ name: z.string().optional(), url: z.string() })).optional(),
+    image: z.string().optional(),
+		coverImage: image().optional(),
+    draft: z.boolean().optional()
+	})
+});
+
+export const collections = { blog, projects };

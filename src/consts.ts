@@ -1,6 +1,67 @@
 // Place any global data in this file.
 // You can import this data from anywhere in your site by using the `import` keyword.
 
-export const SITE_TITLE = 'Devolio';
-export const SITE_TAGLINE = 'Minimalist Starter for Developer Blog & Portfolio Website'; // site tagline
-export const SITE_DESCRIPTION = 'Minimalist Starter for Developer Blog & Portfolio Website'; // site meta description for SEO
+export const SITE_TITLE = 'Laxmidhar Panda';
+export const SITE_TAGLINE = 'Portfolio of Laxmidhar Panda'; // site tagline
+export const SITE_DESCRIPTION = 'Portfolio of Laxmidhar Panda'; // site meta description for SEO
+
+export const AUTHOR_NAME = 'Laxmidhar Panda';
+export const AUTHOR_TITLE = 'Junior Undergraduate';
+export const AUTHOR_LOCATION = 'Bhubaneswar, Odisha';
+export const AUTHOR_SHORT_BIO = `
+Hi! I'm Laxmidhar Panda, a B.Tech. student in Computer Science and Engineering at <strong class="text-zinc-900 dark:text-zinc-100">IIT Gandhinagar</strong>.
+
+I am deeply interested in building software, from desktop, mobile to web applications. Lately, I've been exploring cutting-edge areas like <strong class="text-cyan-600 dark:text-cyan-400">Generative AI</strong> and scalable database systems, working with PyTorch, React, PostgreSQL, and vector databases like Qdrant and FAISS.
+
+Outside of development, I enjoy sharpening my Data Structures and Algorithms skills, hitting the gym, and watching sci-fi.
+`;
+
+export const SOCIAL_LINKS = {
+  github: 'https://github.com/pro-laxmi',
+  linkedin: 'https://www.linkedin.com/in/laxmidhar-panda/',
+  email: 'laxmidharpanda084@gmail.com',
+  leetcode: 'https://leetcode.com/hehe-lala-here',
+  codeforces: 'https://codeforces.com/profile/proo-laxmi',
+  instagram: 'https://www.instagram.com/laxmidhar_panda_/',
+};
+
+export const RESUME_URL = 'https://drive.google.com/file/d/1WWFLhiALFLdKPy-ZUW_z5TeAGStwi23k/view?usp=sharing';
+
+export const TOOLKIT = [
+  {
+    category: "Reading and Research",
+    items: [
+      { name: "Zotero", description: "free, open-source and easy-to-use tool to help me collect, organize, annotate and share my research and reading materials." },
+      { name: "ResearchRabbit", description: "a research tool to help me go down the rabbit hole by finding papers related to my current collection of papers. Connects with Zotero as well!" }
+    ]
+  },
+  {
+    category: "Development",
+    items: [
+      { name: "VS Code", description: "my primary code editor for dev and AI projects, with a lot of extensions to enhance my productivity." },
+      { name: "IntelliJ", description: "my primary IDE for Java and Android development, feels at home with its seamless features and beautiful UI." },
+      { name: "Oracle VirtualBox", description: "a free and open-source virtualization software that allows me to run multiple operating systems on my computer, useful for testing and development." }
+    ]
+  },
+  {
+    category: "Design and Planning",
+    items: [
+      { name: "Excalidraw", description: "a virtual whiteboard tool that I use for sketching, brainstorming and visualizing ideas, with a simple UI and collaborative features." },
+      { name: "Canva", description: "a graphic design platform that I use for making presentations and posters." }
+    ]
+  },
+  {
+    category: "Utilities",
+    items: [
+      { name: "Everything Search", description: "a free and fast file search tool for Windows, which allows me to quickly find files and folders on my computer, just by typing their names." }
+    ]
+  }
+];
+
+export const NEWS = [
+  { date: "Aug 06, 2025", content: "Thrilled to share that I will be interning at <strong class='text-cyan-600 dark:text-cyan-400'>Tower Research Capital</strong> this summer as a Core Engineering Intern! I'm excited to work on innovative projects in the <strong class='text-cyan-600 dark:text-cyan-400'>quant finance sector</strong>." },
+  { date: "Jun 02, 2025", content: "Excited to be selected as <strong class='text-cyan-600 dark:text-cyan-400'>Secretary</strong> of the <strong class='text-cyan-600 dark:text-cyan-400'>Machine Learning Club</strong> at IIT Gandhinagar 👾" },
+  { date: "Apr 14, 2025", content: "🏆 Won the Software Development track at <strong class='text-cyan-600 dark:text-cyan-400'>HackRush'25</strong> for building a centralized <strong class='text-cyan-600 dark:text-cyan-400'>PWA</strong> to streamline student communication and event discovery at IITGN." },
+  { date: "Jan 25, 2025", content: "Honored to receive the <strong class='text-cyan-600 dark:text-cyan-400'>Academic Citation</strong> for Semester 1, 2024-25 at IIT Gandhinagar!" },
+  { date: "Dec 06, 2024", content: "Representing IIT Gandhinagar at <strong class='text-cyan-600 dark:text-cyan-400'>Inter-IIT Tech Meet 13.0</strong>, held at IIT Bombay, presenting my work on a <strong class='text-cyan-600 dark:text-cyan-400'>Multi-Agent RAG system</strong> for legal case simulation!" }
+];

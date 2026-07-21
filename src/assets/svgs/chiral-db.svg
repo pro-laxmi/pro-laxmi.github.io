@@ -1,0 +1,91 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 600" width="900" height="600">
+  <defs>
+    <!-- Background for the SVG -->
+    <rect id="bg" width="900" height="600" fill="transparent"/>
+    
+    <!-- Drop shadow for nodes -->
+    <filter id="shadow" x="-10%" y="-10%" width="120%" height="120%">
+      <feDropShadow dx="2" dy="2" stdDeviation="2" flood-color="#000000" flood-opacity="0.1"/>
+    </filter>
+
+    <!-- Arrow marker -->
+    <marker id="arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#3f4b5b"/>
+    </marker>
+  </defs>
+
+  <use href="#bg"/>
+
+  <g transform="translate(0, 20)">
+      <!-- React Dashboard -->
+      <g transform="translate(350, 40)">
+        <rect width="200" height="50" rx="6" fill="#e2e8f0" stroke="#3f4b5b" stroke-width="2" filter="url(#shadow)"/>
+        <text x="100" y="30" font-family="sans-serif" font-size="15" font-weight="bold" fill="#2d3748" text-anchor="middle">React Dashboard</text>
+      </g>
+    
+      <!-- Arrow: React Dashboard -> FastAPI Controller -->
+      <line x1="450" y1="90" x2="450" y2="135" stroke="#3f4b5b" stroke-width="2" marker-end="url(#arrow)"/>
+    
+      <!-- FastAPI Controller -->
+      <g transform="translate(330, 140)">
+        <rect width="240" height="65" rx="6" fill="#e2e8f0" stroke="#3f4b5b" stroke-width="2" filter="url(#shadow)"/>
+        <text x="120" y="28" font-family="sans-serif" font-size="15" font-weight="bold" fill="#2d3748" text-anchor="middle">FastAPI Controller</text>
+        <text x="120" y="48" font-family="sans-serif" font-size="13" fill="#64748b" text-anchor="middle">(Ingestion / Query API)</text>
+      </g>
+    
+      <!-- Arrow: FastAPI Controller -> Session Manager -->
+      <line x1="450" y1="205" x2="450" y2="250" stroke="#3f4b5b" stroke-width="2" marker-end="url(#arrow)"/>
+    
+      <!-- Session Manager -->
+      <g transform="translate(350, 255)">
+        <rect width="200" height="55" rx="6" fill="#e2e8f0" stroke="#3f4b5b" stroke-width="2" filter="url(#shadow)"/>
+        <text x="100" y="33" font-family="sans-serif" font-size="15" font-weight="bold" fill="#2d3748" text-anchor="middle">Session Manager</text>
+      </g>
+    
+      <!-- Arrows from Session Manager -->
+      <!-- To Metadata Store -->
+      <path d="M 350 282 Q 190 282, 190 355" fill="none" stroke="#3f4b5b" stroke-width="2" marker-end="url(#arrow)"/>
+      
+      <!-- To Normalization Heuristics -->
+      <line x1="450" y1="310" x2="450" y2="355" stroke="#3f4b5b" stroke-width="2" marker-end="url(#arrow)"/>
+    
+      <!-- To Query Builder -->
+      <path d="M 550 282 Q 710 282, 710 355" fill="none" stroke="#3f4b5b" stroke-width="2" marker-end="url(#arrow)"/>
+    
+      <!-- Metadata Store -->
+      <g transform="translate(80, 360)">
+        <rect width="220" height="65" rx="6" fill="#e2e8f0" stroke="#3f4b5b" stroke-width="2" filter="url(#shadow)"/>
+        <text x="110" y="28" font-family="sans-serif" font-size="15" font-weight="bold" fill="#2d3748" text-anchor="middle">Metadata Store</text>
+        <text x="110" y="48" font-family="sans-serif" font-size="13" fill="#64748b" text-anchor="middle">(PostgreSQL Table)</text>
+      </g>
+    
+      <!-- Normalization Heuristics -->
+      <g transform="translate(330, 360)">
+        <rect width="240" height="65" rx="6" fill="#e2e8f0" stroke="#3f4b5b" stroke-width="2" filter="url(#shadow)"/>
+        <text x="120" y="28" font-family="sans-serif" font-size="15" font-weight="bold" fill="#2d3748" text-anchor="middle">Normalization Heuristics</text>
+        <text x="120" y="48" font-family="sans-serif" font-size="13" fill="#64748b" text-anchor="middle">(Statistical Decomposition)</text>
+      </g>
+    
+      <!-- Query Builder -->
+      <g transform="translate(600, 360)">
+        <rect width="220" height="65" rx="6" fill="#e2e8f0" stroke="#3f4b5b" stroke-width="2" filter="url(#shadow)"/>
+        <text x="110" y="38" font-family="sans-serif" font-size="15" font-weight="bold" fill="#2d3748" text-anchor="middle">Query Builder</text>
+      </g>
+    
+      <!-- Arrows to PostgreSQL -->
+      <!-- Normalization Heuristics -> PostgreSQL -->
+      <line x1="450" y1="425" x2="450" y2="488" stroke="#3f4b5b" stroke-width="2" marker-end="url(#arrow)"/>
+      <text x="460" y="460" font-family="sans-serif" font-size="12" font-weight="bold" fill="#3b82f6" text-anchor="start">Dynamic Schema Updates</text>
+    
+      <!-- Query Builder -> PostgreSQL -->
+      <path d="M 710 425 C 710 470, 640 480, 580 495" fill="none" stroke="#3f4b5b" stroke-width="2" marker-end="url(#arrow)"/>
+      <text x="630" y="480" font-family="sans-serif" font-size="12" font-weight="bold" fill="#3b82f6" text-anchor="start">SQL Translation</text>
+    
+      <!-- PostgreSQL -->
+      <g transform="translate(330, 495)">
+        <rect width="240" height="65" rx="6" fill="#e2e8f0" stroke="#3f4b5b" stroke-width="2" filter="url(#shadow)"/>
+        <text x="120" y="28" font-family="sans-serif" font-size="15" font-weight="bold" fill="#2d3748" text-anchor="middle">PostgreSQL</text>
+        <text x="120" y="48" font-family="sans-serif" font-size="13" fill="#64748b" text-anchor="middle">(Relational + JSONB Fallback)</text>
+      </g>
+  </g>
+</svg>

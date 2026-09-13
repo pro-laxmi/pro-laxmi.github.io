@@ -20,7 +20,7 @@ export const SOCIAL_LINKS = {
   github: 'https://github.com/pro-laxmi',
   linkedin: 'https://www.linkedin.com/in/laxmidhar-panda/',
   email: 'laxmidharpanda084@gmail.com',
-  leetcode: 'https://leetcode.com/hehe-lala-here',
+  leetcode: 'https://leetcode.com/u/hehe_lala_here/',
   codeforces: 'https://codeforces.com/profile/proo-laxmi',
   instagram: 'https://www.instagram.com/laxmidhar_panda_/',
 };

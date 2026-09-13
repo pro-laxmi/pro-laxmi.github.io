@@ -6,14 +6,14 @@ export const SITE_TAGLINE = 'Portfolio of Laxmidhar Panda'; // site tagline
 export const SITE_DESCRIPTION = 'Portfolio of Laxmidhar Panda'; // site meta description for SEO
 
 export const AUTHOR_NAME = 'Laxmidhar Panda';
-export const AUTHOR_TITLE = 'Junior Undergraduate';
+export const AUTHOR_TITLE = 'Undergraduate';
 export const AUTHOR_LOCATION = 'Bhubaneswar, Odisha';
 export const AUTHOR_SHORT_BIO = `
 Hi! I'm Laxmidhar Panda, a B.Tech. student in Computer Science and Engineering at <strong class="text-zinc-900 dark:text-zinc-100">IIT Gandhinagar</strong>.
 
-I am deeply interested in building software, from desktop, mobile to web applications. Lately, I've been exploring cutting-edge areas like <strong class="text-cyan-600 dark:text-cyan-400">Generative AI</strong> and scalable database systems, working with PyTorch, React, PostgreSQL, and vector databases like Qdrant and FAISS.
+I am deeply interested in building software that solves real life problems and getting to know things from first principles. My philosophy is to know the fundamentals and build upon them not just doing some AI slop.
 
-Outside of development, I enjoy sharpening my Data Structures and Algorithms skills, hitting the gym, and watching sci-fi.
+Outside of development and coding, I enjoy sharpening my communication skills, hitting the gym, and reading philosophy books.
 `;
 
 export const SOCIAL_LINKS = {
@@ -59,9 +59,7 @@ export const TOOLKIT = [
 ];
 
 export const NEWS = [
-  { date: "Aug 06, 2025", content: "Thrilled to share that I will be interning at <strong class='text-cyan-600 dark:text-cyan-400'>Tower Research Capital</strong> this summer as a Core Engineering Intern! I'm excited to work on innovative projects in the <strong class='text-cyan-600 dark:text-cyan-400'>quant finance sector</strong>." },
-  { date: "Jun 02, 2025", content: "Excited to be selected as <strong class='text-cyan-600 dark:text-cyan-400'>Secretary</strong> of the <strong class='text-cyan-600 dark:text-cyan-400'>Machine Learning Club</strong> at IIT Gandhinagar 👾" },
-  { date: "Apr 14, 2025", content: "🏆 Won the Software Development track at <strong class='text-cyan-600 dark:text-cyan-400'>HackRush'25</strong> for building a centralized <strong class='text-cyan-600 dark:text-cyan-400'>PWA</strong> to streamline student communication and event discovery at IITGN." },
-  { date: "Jan 25, 2025", content: "Honored to receive the <strong class='text-cyan-600 dark:text-cyan-400'>Academic Citation</strong> for Semester 1, 2024-25 at IIT Gandhinagar!" },
-  { date: "Dec 06, 2024", content: "Representing IIT Gandhinagar at <strong class='text-cyan-600 dark:text-cyan-400'>Inter-IIT Tech Meet 13.0</strong>, held at IIT Bombay, presenting my work on a <strong class='text-cyan-600 dark:text-cyan-400'>Multi-Agent RAG system</strong> for legal case simulation!" }
+  { date: "August 24 2026", content: "I have selected for summer internship 2026-27 at <strong class='text-cyan-600 dark:text-cyan-400'>Microsoft</strong> as a SWE intern. "},
+  { date: "July 02, 2026", content: "I am joining the Machine learning club - <strong class='text-cyan-600 dark:text-cyan-400'>SCALE</strong> at IIT Gandhinagar as a core team member. Excited to work on ML projects and contribute to the club's initiatives!" },
+  { date: "April 22, 2025", content: "Excited to announce that I will be the leading <strong class='text-cyan-600 dark:text-cyan-400'>TEDxIITGandhinagar 2025</strong> as the <strong class='text-cyan-600 dark:text-cyan-400'>Design and Tech Core</strong>!" },
 ];

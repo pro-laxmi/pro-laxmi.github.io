@@ -13,7 +13,7 @@ Hi! I'm Laxmidhar Panda, a B.Tech. student in Computer Science and Engineering a
 
 I am deeply interested in building software that solves real life problems and getting to know things from first principles. My philosophy is to know the fundamentals and build upon them not just doing some AI slop.
 
-Outside of development and coding, I enjoy sharpening my communication skills, hitting the gym, and reading philosophy books.
+Outside of development and coding, I enjoy sharpening my communication skills, hitting the gym, and reading self-help books.
 `;
 
 export const SOCIAL_LINKS = {
@@ -29,36 +29,29 @@ export const RESUME_URL = 'https://drive.google.com/file/d/1WWFLhiALFLdKPy-ZUW_z
 
 export const TOOLKIT = [
   {
-    category: "Reading and Research",
-    items: [
-      { name: "Zotero", description: "free, open-source and easy-to-use tool to help me collect, organize, annotate and share my research and reading materials." },
-      { name: "ResearchRabbit", description: "a research tool to help me go down the rabbit hole by finding papers related to my current collection of papers. Connects with Zotero as well!" }
-    ]
-  },
-  {
     category: "Development",
     items: [
-      { name: "VS Code", description: "my primary code editor for dev and AI projects, with a lot of extensions to enhance my productivity." },
-      { name: "IntelliJ", description: "my primary IDE for Java and Android development, feels at home with its seamless features and beautiful UI." },
-      { name: "Oracle VirtualBox", description: "a free and open-source virtualization software that allows me to run multiple operating systems on my computer, useful for testing and development." }
+      { name: "VS Code", description: "my primary code editor for dev and AI projects, with a lot of extensions to enhance my productivity." }
     ]
   },
   {
     category: "Design and Planning",
     items: [
       { name: "Excalidraw", description: "a virtual whiteboard tool that I use for sketching, brainstorming and visualizing ideas, with a simple UI and collaborative features." },
-      { name: "Canva", description: "a graphic design platform that I use for making presentations and posters." }
+      { name: "Canva", description: "a graphic design platform that I use for making presentations and posters." },
+      { name: "Obsidian", description: "a knowledge management tool that I use for taking notes, organizing my thoughts and ideas, and creating a personal wiki." }
     ]
   },
   {
-    category: "Utilities",
+    category: "Linux and Terminal",
     items: [
-      { name: "Everything Search", description: "a free and fast file search tool for Windows, which allows me to quickly find files and folders on my computer, just by typing their names." }
+      { name: "kitty", description: "a fast, feature-rich, and highly customizable terminal emulator that I use for my Linux workflow." }
     ]
   }
 ];
 
 export const NEWS = [
+  { date: "September 28 2026", content: "I am joining <strong class='text-cyan-600 dark:text-cyan-400'>Chronos</strong> a systems hobby group at IIT Gandhinagar. Excited to explore systems OS concepts and networks." },
   { date: "August 24 2026", content: "I have selected for summer internship 2026-27 at <strong class='text-cyan-600 dark:text-cyan-400'>Microsoft</strong> as a SWE intern. "},
   { date: "July 02, 2026", content: "I am joining the Machine learning club - <strong class='text-cyan-600 dark:text-cyan-400'>SCALE</strong> at IIT Gandhinagar as a core team member. Excited to work on ML projects and contribute to the club's initiatives!" },
   { date: "April 22, 2025", content: "Excited to announce that I will be the leading <strong class='text-cyan-600 dark:text-cyan-400'>TEDxIITGandhinagar 2025</strong> as the <strong class='text-cyan-600 dark:text-cyan-400'>Design and Tech Core</strong>!" },
